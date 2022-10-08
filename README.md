@@ -9,3 +9,31 @@ Hunter games is a shooting gallery where the player has to shoot the correct tar
 - each round has different time limit based on the level of difficulty (easy - 5 seconds, medium - 4 seconds, hard - 3 seconds)
 - there is one target for every round and the object will be displayed as Target
 - to shoot, the player can press A, S, D, F, each letter corresponds to the sequence of the objects
+- scores are calculated based on the accuracy and the response time
+
+## Backlog
+- fancy animation on how the objects pop up
+- sound effects and bg music
+- leaderboard
+
+## Data Structure
+
+#main.js
+
+- splashScreen () {}
+- gameScreen () {}
+- gameOverScreen() {}
+
+#game.js
+
+- start () {}
+- showObjects () {}
+- showTarget () {}
+- calculateScore () {}
+- showTimer () {}
+
+#shoot.js
+
+- hitTarget () {}
+
+### Git
