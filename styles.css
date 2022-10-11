@@ -1,0 +1,19 @@
+body {
+    
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-color: #0f1066;
+  }
+
+  body {
+    margin: 100px;
+    display: flex;
+  
+    /* This centers our sketch horizontally. */
+    justify-content: center;
+  
+    /* This centers our sketch vertically. */
+    align-items: center;
+  }
