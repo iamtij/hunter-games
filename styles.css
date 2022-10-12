@@ -5,9 +5,7 @@ body {
     background-attachment: fixed;
     background-size: 100%;
     background-color: #0f1066;
-  }
-
-  body {
+    
     margin: 100px;
     display: flex;
   
