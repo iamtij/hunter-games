@@ -239,6 +239,7 @@ function draw(){
         thirdHit = false;
         fourthHit = false;
 
+        loading.play();
         showTarget();
     }
 
