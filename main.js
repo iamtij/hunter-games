@@ -33,7 +33,7 @@ let intro = new Audio();
 intro.src = './audio/gameintro.wav';
 
 let loading = new Audio();
-loading.src = './audio/quack2.wav';
+loading.src = './audio/loadtargets.mp3';
 
 let gameover = new Audio();
 gameover.src = './audio/gameover3.wav';
@@ -72,8 +72,6 @@ let firstHit = false;
 let secondHit = false;
 let thirdHit = false;
 let fourthHit = false;
-
-let newRound = false;
 
 let totalHits = 0;
 let userHits = 0;
@@ -243,8 +241,6 @@ function draw(){
         showTarget();
     }
 
-    
- 
 
     ctx.drawImage(water, 79, canvas.height - 370)
     ctx.drawImage(frame, 79, canvas.height - 296 )
