@@ -33,10 +33,10 @@ let intro = new Audio();
 intro.src = './audio/gameintro.wav';
 
 let loading = new Audio();
-loading.src = './audio/loadtargets.mp3';
+loading.src = './audio/quack2.wav';
 
 let gameover = new Audio();
-gameover.src = './audio/gameover.wav';
+gameover.src = './audio/gameover3.wav';
 
 
 
@@ -126,7 +126,7 @@ function showTarget(){
              
           }
           
-          console.log(totalHits)
+          
 
         }
 
@@ -209,7 +209,7 @@ function draw(){
     shootTarget();
 
     //load a new round
-    if (userHits == totalHits) {
+    if (userHits == totalHits || totalHits == 0) {
         pos[0].y = 350;
         pos[1].y = 350;
         pos[2].y = 350;
@@ -266,7 +266,7 @@ function draw(){
         ctx.fillStyle = 'white'
         ctx.font = '30px Verdana'
         ctx.fillText("Game Over",300,100)
-        //gameover.play();
+        gameover.play();
     }
     else {
         intervalId = requestAnimationFrame(draw)
