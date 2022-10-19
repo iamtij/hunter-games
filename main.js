@@ -24,11 +24,22 @@ let frame = new Image();
 frame.src = './images/base.png';
 
 let again = new Image();
-again.src = './images/playagain2.png';
+again.src = './images/playagain.png';
 
 let gun1 = new Image();
 gun1.src = './images/riffle1.png';
 
+let gun2 = new Image();
+gun2.src = './images/riffle2.png';
+
+let gun3 = new Image();
+gun3.src = './images/riffle3.png';
+
+let gun4 = new Image();
+gun4.src = './images/riffle4.png';
+
+let splash = new Image();
+splash.src = './images/intro.png'
 
 //sounds
 let shoot = new Audio();
@@ -109,6 +120,7 @@ function showTarget(){
                 break;
             case 1:
                 secondItem = pos[i].tar 
+                
                 if (secondItem == randomTarget) {
                     totalHits++
                  
@@ -116,6 +128,7 @@ function showTarget(){
                 break;
             case 2:
                 thirdItem = pos[i].tar 
+                
                 if (thirdItem == randomTarget) {
                     totalHits++
                    
@@ -123,6 +136,7 @@ function showTarget(){
                 break;
             case 3:
                 fourthItem = pos[i].tar 
+                
                 if (fourthItem == randomTarget) {
                     totalHits++
                     
@@ -132,17 +146,19 @@ function showTarget(){
              
           }
           
+          //show the gun
           
 
         }
 
         
         
-        //draw the bird
+        //draw the ducks
         ctx.drawImage(pos[i].tar , pos[i].x, pos[i].y)
         
         //stop the animation
         if(pos[i].y > 270 ) {    
+            
             pos[i].y = pos[i].y - 3  
                  
         }
@@ -157,9 +173,12 @@ function showTarget(){
 
 function shootTarget(){
 
+    ctx.drawImage(water, 79, canvas.height - 370)
+
     if (firstTarget) {
         
         ctx.drawImage(bullet,168,300);
+       
         if (firstItem == randomTarget && !firstHit) {     
             shoot.play();           
             firstHit = true;
@@ -173,6 +192,7 @@ function shootTarget(){
     if (secondTarget) {
        
         ctx.drawImage(bullet,320,300);
+      
         if (secondItem == randomTarget & !secondHit) {
             shoot.play();       
             secondHit = true;
@@ -186,6 +206,7 @@ function shootTarget(){
     if (thirdTarget) {
        
         ctx.drawImage(bullet,480,300);
+        
         if (thirdItem == randomTarget & !thirdHit) {
             shoot.play();     
             thirdHit = true;
@@ -199,6 +220,7 @@ function shootTarget(){
     if (fourthTarget) {
         
         ctx.drawImage(bullet,620,300);
+       
         if(fourthItem == randomTarget & !fourthHit) {
             shoot.play(); 
             fourthHit = true;
@@ -251,26 +273,39 @@ function newRound() {
 function draw(){
 
     ctx.drawImage(bg,0,0);
-   
-    showTarget();
-    shootTarget();
+    
+    if (loadgame) {
+        showTarget();
+        shootTarget();
+        ctx.drawImage(gun1, 260,360, gun1.width * .8,gun1.height * .8);
+          //  //show single target
+        ctx.drawImage(randomTarget, 175, 416)
+        ctx.fillStyle = 'black'
+        ctx.font = '16px Verdana'
+        ctx.fillText("Target:",113,450)
+    }
+    
 
     if (userHits == totalHits || totalHits == 0) {
         newRound();
         showTarget();
+        ctx.drawImage(gun1, 260,360, gun1.width * .8,gun1.height * .8);
     }
     
 
-    ctx.drawImage(water, 79, canvas.height - 370)
+    //ctx.drawImage(water, 79, canvas.height - 370)
 
-    ctx.drawImage(gun1, 260,360, gun1.width * .8,gun1.height * .8);
+   
+    
+    //show splash
+    if (!loadgame) {
+        ctx.drawImage(splash,150,70)
+    }
+    
+  
 
-    //  //show single target
-    ctx.drawImage(randomTarget, 175, 416)
-
-    ctx.fillStyle = 'black'
-    ctx.font = '16px Verdana'
-    ctx.fillText("Target:",113,450)
+    
+ 
 
     ctx.fillStyle = 'white'
     ctx.font = '22px Verdana'
@@ -280,7 +315,7 @@ function draw(){
 
     if (isGameOver) {
         cancelAnimationFrame(intervalId)
-        ctx.drawImage(again, 350, 100)
+        ctx.drawImage(again, 280, 100,again.width * .5, again.height * .5)
         gameover.play();
         //isGameOver = true;
     }
@@ -297,7 +332,6 @@ window.addEventListener('load', () => {
     loading.play();
     draw();
     
-
     document.addEventListener('keypress',(event)=> {
 
         if (event.key=='a' && !firstTarget) {
@@ -315,13 +349,13 @@ window.addEventListener('load', () => {
             fourthTarget=true;
 
         }
-        else if (event.key=='Enter' && isGameOver) {
+        else if (event.key=='r' && isGameOver) {
 
             location.reload();
 
         }
-        else if (event.key=='Enter') {
-            
+        else if (event.key=='Enter')  {
+            loadgame = true;
         }
         else {
             isGameOver=true;
