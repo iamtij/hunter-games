@@ -100,10 +100,14 @@ let score = 0;
 
 function showTarget(){
    
-    for (let i = 0; i < pos.length;i++) {
+    
 
+    for (let i = 0; i < pos.length;i++) {
+        
         //get and store a random target
         if (pos[i].tar == '') {
+            
+
             pos[i].tar = targets[Math.floor(Math.random() * targets.length)] ; 
             if (randomTarget == '')  {
                 randomTarget = targets[Math.floor(Math.random() * targets.length)] ;  
@@ -146,7 +150,10 @@ function showTarget(){
              
           }
           
-          //show the gun
+          if (loadgame) {
+            loading.play();
+          }
+          
           
 
         }
@@ -265,7 +272,7 @@ function newRound() {
     thirdHit = false;
     fourthHit = false;
 
-    loading.play();
+    
 
     
 }
@@ -278,11 +285,14 @@ function draw(){
         showTarget();
         shootTarget();
         ctx.drawImage(gun1, 260,360, gun1.width * .8,gun1.height * .8);
+
           //  //show single target
         ctx.drawImage(randomTarget, 175, 416)
         ctx.fillStyle = 'black'
         ctx.font = '16px Verdana'
         ctx.fillText("Target:",113,450)
+
+        //loading.play()
     }
     
 
@@ -290,8 +300,10 @@ function draw(){
         newRound();
         showTarget();
         ctx.drawImage(gun1, 260,360, gun1.width * .8,gun1.height * .8);
+       
     }
     
+
 
     //ctx.drawImage(water, 79, canvas.height - 370)
 
@@ -300,7 +312,8 @@ function draw(){
     //show splash
     if (!loadgame) {
         ctx.drawImage(splash,150,70)
-    }
+    } 
+  
     
   
 
@@ -329,7 +342,8 @@ function draw(){
 
 window.addEventListener('load', () => {
     
-    loading.play();
+    //intro.play();
+    gameover.play();
     draw();
     
     document.addEventListener('keypress',(event)=> {
