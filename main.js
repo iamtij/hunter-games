@@ -21,8 +21,16 @@ let water = new Image();
 water.src = './images/water-2.png';
 
 let frame = new Image();
-frame.src = './images/frame.png';
+frame.src = './images/base.png';
 
+let again = new Image();
+again.src = './images/playagain2.png';
+
+let gun1 = new Image();
+gun1.src = './images/riffle1.png';
+
+
+//sounds
 let shoot = new Audio();
 shoot.src = './audio/shoot.wav';
 
@@ -36,7 +44,7 @@ let loading = new Audio();
 loading.src = './audio/loadtargets.mp3';
 
 let gameover = new Audio();
-gameover.src = './audio/gameover3.wav';
+gameover.src = './audio/quack.mp3';
 
 
 
@@ -150,6 +158,7 @@ function showTarget(){
 function shootTarget(){
 
     if (firstTarget) {
+        
         ctx.drawImage(bullet,168,300);
         if (firstItem == randomTarget && !firstHit) {     
             shoot.play();           
@@ -162,6 +171,7 @@ function shootTarget(){
     }
 
     if (secondTarget) {
+       
         ctx.drawImage(bullet,320,300);
         if (secondItem == randomTarget & !secondHit) {
             shoot.play();       
@@ -174,6 +184,7 @@ function shootTarget(){
     }  
     
     if (thirdTarget) {
+       
         ctx.drawImage(bullet,480,300);
         if (thirdItem == randomTarget & !thirdHit) {
             shoot.play();     
@@ -186,6 +197,7 @@ function shootTarget(){
     } 
 
     if (fourthTarget) {
+        
         ctx.drawImage(bullet,620,300);
         if(fourthItem == randomTarget & !fourthHit) {
             shoot.play(); 
@@ -199,70 +211,78 @@ function shootTarget(){
 
 }
 
+function newRound() {
+    //load a new round
+   
+    pos[0].y = 350;
+    pos[1].y = 350;
+    pos[2].y = 350;
+    pos[3].y = 350;
+
+    pos[0].tar = "";
+    pos[1].tar = "";
+    pos[2].tar = "";
+    pos[3].tar = "";
+    
+    totalHits = 0;
+    userHits = 0;
+    randomTarget = "";
+
+    firstTarget = false;
+    secondTarget = false;
+    thirdTarget = false;    
+    fourthTarget = false;
+
+    firstItem = "";
+    secondItem = "";
+    thirdItem = "";
+    fourthItem = "";
+
+    firstHit = false;
+    secondHit = false;
+    thirdHit = false;
+    fourthHit = false;
+
+    loading.play();
+
+    
+}
+
 function draw(){
 
     ctx.drawImage(bg,0,0);
-
+   
     showTarget();
     shootTarget();
 
-    //load a new round
     if (userHits == totalHits || totalHits == 0) {
-        pos[0].y = 350;
-        pos[1].y = 350;
-        pos[2].y = 350;
-        pos[3].y = 350;
-
-        pos[0].tar = "";
-        pos[1].tar = "";
-        pos[2].tar = "";
-        pos[3].tar = "";
-      
-        totalHits = 0;
-        userHits = 0;
-        randomTarget = "";
-
-        firstTarget = false;
-        secondTarget = false;
-        thirdTarget = false;    
-        fourthTarget = false;
-
-        firstItem = "";
-        secondItem = "";
-        thirdItem = "";
-        fourthItem = "";
-
-        firstHit = false;
-        secondHit = false;
-        thirdHit = false;
-        fourthHit = false;
-
-        loading.play();
+        newRound();
         showTarget();
     }
-
+    
 
     ctx.drawImage(water, 79, canvas.height - 370)
-    ctx.drawImage(frame, 79, canvas.height - 296 )
+
+    ctx.drawImage(gun1, 260,360, gun1.width * .8,gun1.height * .8);
 
     //  //show single target
-    ctx.drawImage(randomTarget, 180, 410)
+    ctx.drawImage(randomTarget, 175, 416)
 
     ctx.fillStyle = 'black'
-    ctx.font = '22px Verdana'
-    ctx.fillText("Target:",95,450)
+    ctx.font = '16px Verdana'
+    ctx.fillText("Target:",113,450)
 
     ctx.fillStyle = 'white'
     ctx.font = '22px Verdana'
     ctx.fillText("Score:",95,50)
     ctx.fillText(score,170,50)
 
+
     if (isGameOver) {
         cancelAnimationFrame(intervalId)
-        ctx.fillStyle = 'white'
-        ctx.font = '30px Verdana'
-        ctx.fillText("Game Over",300,100)
+        ctx.drawImage(again, 350, 100)
         gameover.play();
+        //isGameOver = true;
     }
     else {
         intervalId = requestAnimationFrame(draw)
@@ -276,6 +296,7 @@ window.addEventListener('load', () => {
     
     loading.play();
     draw();
+    
 
     document.addEventListener('keypress',(event)=> {
 
@@ -294,10 +315,16 @@ window.addEventListener('load', () => {
             fourthTarget=true;
 
         }
+        else if (event.key=='Enter' && isGameOver) {
 
+            location.reload();
+
+        }
+        else if (event.key=='Enter') {
+            
+        }
         else {
             isGameOver=true;
-            
         }
     })
 
