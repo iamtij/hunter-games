@@ -12,8 +12,7 @@ Hunter games is a shooting gallery where the player has to shoot the correct tar
 - scores are calculated based on the accuracy and the response time
 
 ## Backlog
-- fancy animation on how the objects pop up
-- sound effects and bg music
+- countdown timer
 - leaderboard
 
 ## Data Structure
@@ -40,4 +39,4 @@ Hunter games is a shooting gallery where the player has to shoot the correct tar
 [Link](https://github.com/iamtij/hunter-games)
 
 ### Slides
-[Link](https://docs.google.com/presentation/d/1qdOZVf_i3OFnljlidQh9N8NOpOAx3yAaIT6WfGFG7kk/edit?usp=sharing)
+[Link](https://www.canva.com/design/DAFPmIpWtUU/ccwTdFX1Zs1YcHhVOWLxew/view?utm_content=DAFPmIpWtUU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
