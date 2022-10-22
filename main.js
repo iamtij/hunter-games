@@ -363,10 +363,10 @@ window.addEventListener('load', () => {
             fourthTarget=true;
 
         }
-        else if (event.key=='r' && isGameOver) {
-
+        else if (event.key=='r' ) {
+            if (isGameOver) {
             location.reload();
-
+            }
         }
         else if (event.key=='Enter')  {
             loadgame = true;
